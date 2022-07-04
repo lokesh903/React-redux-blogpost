@@ -18,7 +18,13 @@ const blogReducer = (state = initialState, action) => {
     case "ADD_BLOG":
       state=[...state,action.payload]
       return state
-
+    case "UPDATE_BLOG":
+      var update=state.map((blog)=>  blog.id===action.payload.id ? action.payload : blog )
+      state=update
+      return state
+    case "DELETE_BLOG":
+      state=state.filter((blog)=> blog.id!==action.payload )
+      return state
     default:
     return state
 
